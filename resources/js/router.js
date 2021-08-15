@@ -5,6 +5,8 @@ import Register       from './pages/Register'
 import Login          from './pages/Login'
 import Dashboard      from './pages/user/Dashboard'
 import AdminDashboard from './pages/admin/Dashboard'
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword  from "./pages/ResetPassword";
 
 // Routes
 const routes = [
@@ -28,6 +30,23 @@ const routes = [
         path      : '/login',
         name      : 'login',
         component : Login,
+        props     : true,
+        meta      : {
+            auth : false
+        }
+    },
+    {
+        path      : '/reset-password',
+        name      : 'reset-password',
+        component : ForgotPassword,
+        meta      : {
+            auth : false
+        }
+    },
+    {
+        path      : '/reset-password/:token',
+        name      : 'reset-password-form',
+        component : ResetPassword,
         meta      : {
             auth : false
         }

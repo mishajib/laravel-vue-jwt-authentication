@@ -6,6 +6,14 @@
                 <div class="alert alert-danger" v-if="has_error">
                     <p>Error, unable to connect with these credentials.</p>
                 </div>
+                <div class="alert alert-success alert-dismissible fade show" v-if="reset_password_success_message"
+                     role="alert">
+                    {{ reset_password_success_message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
                 <form autocomplete="off" @submit.prevent="login" method="post">
                     <div class="form-group">
                         <label for="email">E-mail</label>
@@ -17,9 +25,14 @@
                         <input type="password" id="password" class="form-control" v-model="password"
                                placeholder="Enter your password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                        Login
-                    </button>
+                    <div>
+                        <button type="submit" class="btn btn-primary">
+                            Login
+                        </button>
+                        <router-link class="float-right" :to="{ name: 'reset-password' }">
+                            Forgot your password?
+                        </router-link>
+                    </div>
                 </form>
             </div>
         </div>
@@ -27,6 +40,10 @@
 </template>
 <script>
 export default {
+    name  : "Login",
+    props : [
+        'reset_password_success_message'
+    ],
     data() {
         return {
             email     : 'user@test.com',
